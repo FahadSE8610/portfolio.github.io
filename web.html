@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>ET | Emily Trabert</title>
+    <style>
+        /* Credits: https://codepen.io/chriscoyier/pen/XwbNwX */
+        
+        .slider {
+            box-sizing: border-box;
+            width: 304px;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .slides {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .slides::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        .slides::-webkit-scrollbar-thumb {
+            background: #40433C;
+            border-radius: 10px;
+        }
+        
+        .slides::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .slides>div {
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            width: 300px;
+            margin-right: 50px;
+            border-radius: 10px;
+            border: 2px solid #B2BD7B;
+            transform-origin: center center;
+            transform: scale(1);
+            transition: transform 0.5s;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .slides>div p {
+            margin: 30px;
+        }
+        
+        img.slides {
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .slider>a {
+            display: inline-flex;
+            width: 2rem;
+            height: 2rem;
+            color: #FFFFFF;
+            background: #40433C;
+            text-decoration: none;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 0 0.5rem 0;
+            position: relative;
+        }
+        
+        .slider>a:active {
+            top: 1px;
+        }
+        
+        .slider>a:focus {
+            background: #000;
+        }
+        /* Don't need button navigation */
+        
+        @supports (scroll-snap-type) {
+            .slider>a {
+                display: none;
+            }
+        }
+        /*  */
+        
+        body {
+            font-family: "Lato", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: #40433C;
+        }
+        
+        #logo {
+            padding-right: 5%;
+            float: left;
+        }
+        
+        .header {
+            clear: both;
+        }
+        
+        p.lead {
+            font-size: 140%;
+            clear: right;
+        }
+        
+        strong {
+            color: #B2BD7B;
+        }
+        
+        a,
+        a:hover {
+            color: #949189;
+        }
+        
+        .button.tutoring {
+            text-align: center;
+        }
+        
+        .button.button-primary {
+            color: #FFF;
+            border-color: #40433C;
+            background-color: #40433C;
+        }
+        
+        .button.button-primary:hover {
+            color: #FFF;
+            border-color: #B2BD7B;
+            background-color: #B2BD7B;
+        }
+        
+        .button.button-primary:focus {
+            color: #FFF;
+            border-color: #949189;
+            background-color: #949189;
+        }
+        
+        .docs-header {
+            text-transform: uppercase;
+            font-size: 1.4rem;
+            letter-spacing: .2rem;
+            font-weight: 600;
+            color: #949189;
+            padding-top: 1rem;
+        }
+        
+        .row {
+            margin-top: 10%;
+        }
+        
+        @media (min-width: 0px) {
+            #logo {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                padding-right: 0px;
+                float: none;
+            }
+        }
+        
+        @media (min-width: 750px) {
+            #logo {
+                padding-right: 5%;
+                float: left;
+                display: inline;
+                clear: both;
+            }
+        }
+        /* Credits: https://codepen.io/fxm90/pen/yOBWVe */
+        
+        .star {
+            position: relative;
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 0.9em;
+            margin-right: 0.9em;
+            margin-bottom: 1.2em;
+            border-right: 0.3em solid transparent;
+            border-bottom: 0.7em solid #FC0;
+            border-left: 0.3em solid transparent;
+            /* Controlls the size of the stars. */
+            font-size: 12px;
+        }
+        
+        .star:before,
+        .star:after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: 0.6em;
+            left: -1em;
+            border-right: 1em solid transparent;
+            border-bottom: 0.7em solid #FC0;
+            border-left: 1em solid transparent;
+            transform: rotate(-35deg);
+        }
+        
+        .star:after {
+            transform: rotate(35deg)
+        }
+    </style>
+    <meta name="description" content="Emily Trabert's Personal Website">
+    <meta name="author" content="Emily Trabert">
+
+    <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+    <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+
+<body>
+
+    <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div class="container">
+        <div class="header" style="margin-top: 25%">
+            <img id="logo" src="img/logo_med.png" />
+            <h6 class="docs-header">About Me</h6>
+            <p class="lead">My name is <strong>Emily Trabert</strong>. I'm currently a <strong>Software Development Engineer</strong> and <strong>Computer Science Tutor</strong> in <em>Durham, NC</em>. I graduated from <a href="http://american.edu/">American University</a>                in <em>Washington, DC</em> with a BS in <strong>Computer Science</strong>, a BS in <strong>Audio Technology</strong>, and a Minor in <strong>Graphic Design</strong>.</p>
+        </div>
+        <div class="row">
+            <div class="six columns">
+                <h6 class="docs-header">Tutoring</h6>
+                <!-- Calendly link widget begin -->
+                <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+                <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
+                <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/emilytrabert/tutor-intro'});return false;" class="button button-primary tutoring">Schedule time with me</a>
+                <!-- Calendly link widget end -->
+                <p>Interested in my tutoring services? Schedule this <strong>free introductory meeting</strong> and we can go over your goals and how I can best be of service.</p>
+                <p>I tailor my teaching style to each individual student based on how each one learns best. I also like to learn what each student is passionate about and make analogies about computer science to their passion. I believe learning should be
+                    about discovering practical skills for use in day-to-day life, not memorization.</p>
+                <p>I tutor a broad range of computer science subjects including basic programming concepts as well as the following languages:</p>
+                <ul>
+                    <li>Java</li>
+                    <li>Python</li>
+                    <li>C#</li>
+                    <li>SQL</li>
+                    <li>HTML/CSS/JavaScript</li>
+                </ul>
+            </div>
+
+            <div class="six columns">
+                <h6 class="docs-header">Current Students</h6>
+                <div>
+                    <script type='text/javascript' src='https://app.tutorbird.com/Widget/v2/Login.ashx'></script>
+                </div>
+
+                <h6 class="docs-header">Testimonials</h6>
+                <div class="slider">
+                    <a href="#slide-1">1</a>
+                    <a href="#slide-2">2</a>
+                    <a href="#slide-3">3</a>
+                    <div class="slides">
+                        <div id="slide-1">
+                            <p><i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i><br />"Emily is excellent and very well prepared for her sessions. She is able to methodically get the correct answers from
+                                her students. I am certain the tools and resources she is sharing will help my daughter be successful with AP Computer Science. I highly recommend her services."</p>
+                        </div>
+                        <div id="slide-2">
+                            <p><i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i><br />"Emily has great communication skills and works very well with her students. She ensures they understand the thought
+                                process and the path to end goal. I would highly recommend the services of Emily!"</p>
+                        </div>
+                        <div id="slide-3">
+                            <p><i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i><i class="star"></i><br />"An incredibly dedicated tutor. Provides detailed comments and study plans."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="six columns">
+                <h6 class="docs-header">Portfolios</h6>
+                <a href="http://www.github.com/emilytrabert" class="button button-primary">Github</a>
+                <a href="http://design.emilytrabert.com" class="button button-primary">Designs</a>
+                <a href="http://www.linkedin.com/in/emilytrabert" class="button button-primary">LinkedIn</a>
+            </div>
+
+            <div class="six columns">
+                <h6 class="docs-header">Shops</h6>
+                <a href="http://www.etsy.com/shop/emilytrabert" class="button button-primary">Etsy</a>
+                <a href="http://www.redbubble.com/people/emilyetc" class="button button-primary">Redbubble</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>
